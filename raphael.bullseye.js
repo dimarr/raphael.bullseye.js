@@ -337,7 +337,7 @@ Raphael.fn.bullseye = function(opt) {
                         upper_bound = bounds[1];
                     
                     if (upper_bound == -1)
-                        this.ringDistance = this.distance;
+                        this.ringDistance = -1;  // we're out of bounds, ie not in a ring
                     else
                         this.ringDistance = (this.radius - low_bound) / (upper_bound - low_bound);
 
