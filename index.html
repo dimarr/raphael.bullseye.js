@@ -6,12 +6,23 @@
   <link href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin' rel='stylesheet' type='text/css'>
   <style>
 body{font:normal 100%/1.45 "Josefin Sans", "lucida Grande", "Calibri", "Arial", sans-serif}
+#canvas {float: left}
+#output {float: left; margin-top: 10px}
+.clear {clear: both}
+.datatable .field { width: 150px }
+.datatable .value { width: 180px }
+.datatable th { background-color: #ddd }
   </style>
 </head>
 <body>
   <h1>Bullseye Chart</h1>
-  <p>Drag enabled bullseye chart illustrating battles in WW2 chronologically. Greens are allied victories, reds are axis. Size of dot represents casualties.</p>
-  <div id="canvas"></div>
+  <p>Bullseye chart illustrating WW2 battles chronologically. Greens are allied victories, reds are axis. Size of dot represents casualties.</p>
+  <p>Hover over a point to see additional data.</p>
+  <div id="chart-container">
+      <div id="canvas"></div>
+      <div id="output"></div>
+      <div class="clear"></div>
+  </div>
 
   <a href="http://github.com/dimarr/raphael.bullseye.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
@@ -28,7 +39,7 @@ body{font:normal 100%/1.45 "Josefin Sans", "lucida Grande", "Calibri", "Arial", 
       <span class="small">by <a href="http://github.com/dimarr">dimarr</a></span></h1>
 
     <div class="description">
-      This is a bullseye chart made with raphael js
+      This is a bullseye chart made with the <a href="http://raphaeljs.com">Raphael</a> graphics lib. It supports mouse actions (click, hover), adding points at runtime, serializing data points, and more. Point locations can be saved and restored later.
     </div>
 
     <h2>Authors</h2>

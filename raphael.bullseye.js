@@ -397,10 +397,9 @@ Raphael.fn.bullseye = function(opt) {
         }
         
         
-        
         point.angle = angle;
         point.radius = radius;
-        point.distance = distance;
+        point.distance = radius / maxRadius;
         point.ringDistance = distance;
         
         var label = opts.label || 'Point ' + point.id;
