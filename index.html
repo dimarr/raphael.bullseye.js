@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>raphael.bullseye.js</title>
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin' rel='stylesheet' type='text/css'>
+  <style>
+body{font:normal 100%/1.45 "Josefin Sans", "lucida Grande", "Calibri", "Arial", sans-serif}
+#canvas {float: left}
+#output {float: left; margin-top: 10px}
+.clear {clear: both}
+.datatable .field { width: 150px }
+.datatable .value { width: 180px }
+.datatable th { background-color: #ddd }
+  </style>
+</head>
+<body>
+  <h1>Bullseye Chart</h1>
+  <p>Bullseye chart illustrating WW2 battles chronologically. Greens are allied victories, reds are axis. Size of dot represents casualties.</p>
+  <p>Hover over a point to see additional data.</p>
+  <div id="chart-container">
+      <div id="canvas"></div>
+      <div id="output"></div>
+      <div class="clear"></div>
+  </div>
+
+  <a href="http://github.com/dimarr/raphael.bullseye.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+
+  <div id="container">
+
+    <div class="download">
+      <a href="http://github.com/dimarr/raphael.bullseye.js/zipball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+        <a href="http://github.com/dimarr/raphael.bullseye.js/tarball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+    </div>
+
+    <h1><a href="http://github.com/dimarr/raphael.bullseye.js">raphael.bullseye.js</a>
+      <span class="small">by <a href="http://github.com/dimarr">dimarr</a></span></h1>
+
+    <div class="description">
+      This is a bullseye chart made with the <a href="http://raphaeljs.com">Raphael</a> graphics lib. It supports mouse actions (click, hover), adding points at runtime, serializing data points, and more. Point locations can be saved and restored later.
+    </div>
+
+    <h2>Authors</h2>
+<p>Dmitri Rodik (dmitri@dmitri.tv><br/><br/></p>
+
+    <h2>Download</h2>
+    <p>
+      You can download this project in either
+      <a href="http://github.com/dimarr/raphael.bullseye.js/zipball/master">zip</a> or
+      <a href="http://github.com/dimarr/raphael.bullseye.js/tarball/master">tar</a> formats.
+    </p>
+    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+      by running:
+      <pre>$ git clone git://github.com/dimarr/raphael.bullseye.js</pre>
+    </p>
+
+    <div class="footer">
+      get the source code on GitHub : <a href="http://github.com/dimarr/raphael.bullseye.js">dimarr/raphael.bullseye.js</a>
+    </div>
+
+  </div>
+
+<!--
+uncomment for git pages
+<script src="https://raw.github.com/dimarr/raphael.bullseye.js/master/raphael-min.js" type="text/javascript"></script>
+<script src="https://raw.github.com/dimarr/raphael.bullseye.js/master/raphael.bullsey.js" type="text/javascript"></script>
+<script src="https://raw.github.com/dimarr/raphael.bullseye.js/master/app.js" type="text/javascript"></script>
+-->
+
+<!--
+uncomment for testing
+-->
+<script src="raphael-min.js" type="text/javascript"></script>
+<script src="raphael.bullseye.js" type="text/javascript"></script>
+<script src="app.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
