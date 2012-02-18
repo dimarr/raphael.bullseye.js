@@ -9,9 +9,9 @@
         #canvas {float: left}
         #output {float: left; margin-top: 10px}
         .clear {clear: both}
+        .datatable th { background-color: #ddd }
         .datatable .field { width: 150px }
         .datatable .value { width: 180px }
-        .datatable th { background-color: #ddd }
         pre {
             margin: 0 5px;
             padding: 15px;
@@ -39,7 +39,9 @@
     <li>easily serializable with polar coordinates</li>
     <li>mouse interaction and callbacks: <code>onMouseOver</code>, <code>onPointClick</code>, <code>onSliceClick</code></li>
     <li>add / remove / drag points at runtime</li>
+    <li>works in Chrome, FF, and IE*</li>
     </ul>
+    * most of the testing done in IE9, brief testing in IE7 and 8 showed no issues
     <h2>Example</h2>
     <div id="chart-container">
       <div id="canvas"></div>
@@ -47,8 +49,9 @@
       <div class="clear"></div>
     </div>
 
-      <p>Bullseye chart illustrating WW2 battles chronologically. Greens are allied victories, reds are axis. Size of dot represents casualties.</p>
+      <p>Bullseye chart illustrating WW2 battles chronologically. Greens are allied victories and reds are axis' victories. Size of dot represents casualties.</p>
       <p>Hover over a point to see additional data.</p>
+      <p>Note: the points were randomly placed along the ring (for the specified year / theater) so they may overlap.</p>
 
     <h2>Usage</h2>
     <pre>
