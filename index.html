@@ -5,45 +5,62 @@
   <title>raphael.bullseye.js</title>
   <link href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin' rel='stylesheet' type='text/css'>
   <style>
-body{font:normal 100%/1.45 "Josefin Sans", "lucida Grande", "Calibri", "Arial", sans-serif}
-#canvas {float: left}
-#output {float: left; margin-top: 10px}
-.clear {clear: both}
-.datatable .field { width: 150px }
-.datatable .value { width: 180px }
-.datatable th { background-color: #ddd }
+        body{font:normal 100%/1.45 "Josefin Sans", "lucida Grande", "Calibri", "Arial", sans-serif}
+        #canvas {float: left}
+        #output {float: left; margin-top: 10px}
+        .clear {clear: both}
+        .datatable .field { width: 150px }
+        .datatable .value { width: 180px }
+        .datatable th { background-color: #ddd }
+        pre {
+            margin: 0 5px;
+            padding: 15px;
+            border: 1px solid #eee;
+        }
+        code {
+            border: 1px solid #eee;
+        }
   </style>
 </head>
 <body>
+
   <h1>Bullseye Chart</h1>
-  <p>Bullseye chart illustrating WW2 battles chronologically. Greens are allied victories, reds are axis. Size of dot represents casualties.</p>
-  <p>Hover over a point to see additional data.</p>
-  <div id="chart-container">
-      <div id="canvas"></div>
-      <div id="output"></div>
-      <div class="clear"></div>
-  </div>
 
   <a href="http://github.com/dimarr/raphael.bullseye.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
   <div id="container">
 
-    <div class="download">
-      <a href="http://github.com/dimarr/raphael.bullseye.js/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-        <a href="http://github.com/dimarr/raphael.bullseye.js/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+
+     <p>This is a bullseye chart made with the <a href="http://raphaeljs.com">Raphael</a> graphics lib. It supports mouse interaction, runtime modification, serializing data points, and more.</p>
+    
+    <h2>Features</h2>
+    <ul>
+    <li>works seamlessly with Raphael: <code>Raphael('canvas').bullseye()</code></li>
+    <li>easily serializable with polar coordinates</li>
+    <li>mouse interaction and callbacks: <code>onMouseOver</code>, <code>onPointClick</code>, <code>onSliceClick</code></li>
+    <li>add / remove / drag points at runtime</li>
+    </ul>
+    <h2>Example</h2>
+    <div id="chart-container">
+      <div id="canvas"></div>
+      <div id="output"></div>
+      <div class="clear"></div>
     </div>
 
-    <h1><a href="http://github.com/dimarr/raphael.bullseye.js">raphael.bullseye.js</a>
-      <span class="small">by <a href="http://github.com/dimarr">dimarr</a></span></h1>
+      <p>Bullseye chart illustrating WW2 battles chronologically. Greens are allied victories, reds are axis. Size of dot represents casualties.</p>
+      <p>Hover over a point to see additional data.</p>
 
-    <div class="description">
-      This is a bullseye chart made with the <a href="http://raphaeljs.com">Raphael</a> graphics lib. It supports mouse actions (click, hover), adding points at runtime, serializing data points, and more. 
-    </div>
+    <h2>Usage</h2>
+    <pre>
+    Raphael('canvas', 640, 600).bullseye({
+        'sliceLabels': ['Pacific', 'Atlantic', 'Mediterranean'],
+        'ringLabels': ['1940', '1941', '1942', '1943', '1944', '1945'],
+    });</pre>
+        
+    <p>Check out the project page <a href="http://github.com/dimarr/raphael.bullseye.js">dimarr/raphael.bullseye.js</a> for more complete documentation.</p>
 
     <h2>Authors</h2>
-<p>Dmitri Rodik (dmitri@dmitri.tv><br/><br/></p>
+<p>Dmitri Rodik (dmitri@dmitri.tv></p>
 
     <h2>Download</h2>
     <p>
@@ -57,15 +74,16 @@ body{font:normal 100%/1.45 "Josefin Sans", "lucida Grande", "Calibri", "Arial", 
     </p>
 
     <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/dimarr/raphael.bullseye.js">dimarr/raphael.bullseye.js</a>
+      Get the source code on GitHub : <a href="http://github.com/dimarr/raphael.bullseye.js">dimarr/raphael.bullseye.js</a>
     </div>
 
-  </div>
+</div>
 
 <script src="raphael-min.js" type="text/javascript"></script>
 <script src="raphael.bullseye.js" type="text/javascript"></script>
 <script src="app.js" type="text/javascript"></script>
 
+<!--
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -75,5 +93,6 @@ try {
 var pageTracker = _gat._getTracker("");
 pageTracker._trackPageview();
 } catch(err) {}</script>
+-->
 </body>
 </html>
