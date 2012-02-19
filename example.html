@@ -1,29 +1,10 @@
-# Bullseye Chart
+<script src="raphael-min.js" type="text/javascript"></script>
+<script src="raphael.bullseye.js" type="text/javascript"></script>
 
-Bullseye chart made with the [Raphael](http://raphaeljs.org) graphics lib. It supports mouse interaction, runtime modification, serializing data points, and more.
+<div id=canvas></div>
 
-## Features
-
-- works seamlessly with Raphael: `Raphael('canvas').bullseye()`
-- easily serializable with polar coordinates
-- mouse interaction and callbacks: `onMouseOver`, `onPointClick`, `onSliceClick`
-- add / remove / drag points at runtime
-- works in Chrome, FF, and IE*
-
-\* works in IE9, briefly tested with IE7 and 8 
-
-
-## Demo
-
-[Demo page](http://dimarr.github.com/raphael.bullseye.js)
-
-## Installation
-
-    <script src="raphael-min.js" type="text/javascript"></script>
-    <script src="raphael.bullseye.js" type="text/javascript"></script>
-
-## Example
-
+<script>
+window.onload = function() {
     var RAD = Math.PI / 180;
     var bullseye = Raphael('canvas', 450, 450).bullseye({
         'sliceLabels' : ['Apple', 'Banana', 'Orange'],
@@ -55,7 +36,5 @@ Bullseye chart made with the [Raphael](http://raphaeljs.org) graphics lib. It su
         'pointFill': '#ff0000',
         'pointSize': 5
     });
-
-## License
-
-MIT
+}
+</script>

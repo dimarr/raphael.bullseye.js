@@ -36,7 +36,7 @@ window.onload = function() {
     };
     var bullseye = Raphael('canvas', 640, 600).bullseye({
         'sliceLabels': slices,
-        'ringLabels': ['1940', '1941', '1942', '1943', '1944', '1945'],
+        'ringLabels': [1940, 1941, 1942, 1943, 1944, 1945],
         'startDegree': -30,
         'allowDrag': true,
         'onMouseOver': showData,
@@ -64,19 +64,26 @@ window.onload = function() {
         ['p', 1941, 'Pearl Harbor',  2500, 'axis']
     ];
 
+
+    var angle;
+    var upper_bound, lower_bound;
     for (var i = 0; i < data.length; i++) {
-        var angle;
         switch(data[i][0]) {
             case 'a':
-                angle = rand(-25, 85);
+                lower_bound = -25;
+                upper_bound = 85;
                 break;
             case 'm':
-                angle = rand(95, 205);
+                lower_bound = 95;
+                upper_bound = 205;
                 break;
             case 'p':
-                angle = rand(215, 325);
+                lower_bound = 215;
+                upper_bound = 325;
                 break;
         }
+
+        angle = rand(lower_bound, upper_bound);
 
         if (data[i][3] > 500000)
             size = 8;

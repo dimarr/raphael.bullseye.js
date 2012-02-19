@@ -291,12 +291,13 @@ Raphael.fn.bullseye = function(opt) {
         })
         .click(function() { onPointClick(this) })
         .hover(function() {
+            // introduce a small delay (mitigates IE's mouse flicker)
             setTimeout(function() {
                 onMouseOver(point);
-            }, 100);
+            }, 50);
             
             this.attr({
-                stroke: 'FFFF00',
+                stroke: '#FFFF00',
                 'stroke-width': 2,
                 'stroke-opacity': .5
             });
