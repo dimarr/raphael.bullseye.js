@@ -85,6 +85,9 @@ window.onload = function() {
 
         angle = rand(lower_bound, upper_bound);
 
+        // show positive angle when you hover over a point
+        if (angle < 0) angle += 360;
+
         if (data[i][3] > 500000)
             size = 8;
         else if (data[i][3] > 100000)
