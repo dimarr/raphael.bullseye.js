@@ -1,6 +1,6 @@
 # Bullseye Chart
 
-Bullseye chart made with the [Raphael](http://raphaeljs.org) graphics lib. It supports mouse interaction, runtime modification, serializing data points, and more.
+Bullseye chart made with the [Raphael](http://raphaeljs.org) graphics lib. It supports mouse interaction, adding and removing points at runtime, serializing data points, and more.
 
 ## Features
 
