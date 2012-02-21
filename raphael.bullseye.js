@@ -237,7 +237,7 @@ Raphael.fn.bullseye = function(opt) {
 	}
 
      
-    this.getPoints = function() {
+    B.getPoints = function() {
         return this.points;
     }
 
