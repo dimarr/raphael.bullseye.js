@@ -1,13 +1,13 @@
 # Bullseye Chart
 
-Bullseye chart made with the [Raphael](http://raphaeljs.org) graphics lib. It supports mouse interaction, adding and removing points at runtime, serializing data points, and more.
+Bullseye chart made with Javascript and the [Raphael](http://raphaeljs.org) graphics lib. It supports mouse interaction, adding and removing points at runtime, serializing data points, and more.
 
 ## Features
 
 - works seamlessly with Raphael: `Raphael('canvas').bullseye()`
-- easily serializable with polar coordinates
+- easily serializable polar coordinates
 - mouse interaction and callbacks: `onMouseOver`, `onPointClick`, `onSliceClick`
-- add / remove / drag points at runtime
+- supports adding, removing, and dragging points
 - works in Chrome, FF, and IE*
 
 \* works in IE9, briefly tested with IE7 and 8 
