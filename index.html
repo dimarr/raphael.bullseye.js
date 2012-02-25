@@ -31,14 +31,14 @@
   <div id="container">
 
 
-     <p>Bullseye chart made with the <a href="http://raphaeljs.com">Raphael</a> graphics lib. It supports mouse interaction, adding and removing points at runtime, serializing data points, and more.</p>
+     <p>Bullseye chart made with Javascript and the <a href="http://raphaeljs.com">Raphael</a> graphics lib. It supports mouse interaction, adding and removing points at runtime, serializing data points, and more.</p>
     
     <h2>Features</h2>
     <ul>
     <li>works seamlessly with Raphael: <code>Raphael('canvas').bullseye()</code></li>
-    <li>easily serializable with polar coordinates</li>
+    <li>easily serializable polar coordinates</li>
     <li>mouse interaction and callbacks: <code>onMouseOver</code>, <code>onPointClick</code>, <code>onSliceClick</code></li>
-    <li>add / remove / drag points at runtime</li>
+    <li>supports adding, removing, and dragging points</li>
     <li>works in Chrome, FF, and IE*</li>
     </ul>
     * works in IE9, briefly tested with IE7 and 8 
@@ -54,15 +54,15 @@
 
     <h2>Usage</h2>
     <pre>
-    Raphael('canvas', 640, 600).bullseye({
-        'sliceLabels': ['Pacific', 'Atlantic', 'Mediterranean'],
-        'ringLabels': [1940, 1941, 1942, 1943, 1944, 1945]
-    });</pre>
+Raphael('canvas', 640, 600).bullseye({
+    'sliceLabels': ['Pacific', 'Atlantic', 'Mediterranean'],
+    'ringLabels': [1940, 1941, 1942, 1943, 1944, 1945]
+});</pre>
         
     <p>Check out the project page <a href="http://github.com/dimarr/raphael.bullseye.js">dimarr/raphael.bullseye.js</a> for more complete documentation.</p>
 
     <h2>Authors</h2>
-<p>Dmitri Rodik <dmitri@dmitri.tv></p>
+<p>Dmitri Rodik &lt;dmitri@dmitri.tv&gt;</p>
 
     <h2>Download</h2>
     <p>
