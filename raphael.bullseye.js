@@ -38,6 +38,7 @@ Raphael.fn.bullseye = function(opt) {
         this.canvas = canvas;
         this.points = [];
         this.ringRadii = [];
+        this.sliceAreas = [];
 
         /**
          * draw chart components in specific order
@@ -52,6 +53,20 @@ Raphael.fn.bullseye = function(opt) {
         this.ringRadii.push(this.bullseyeRadius);
         // make it ascending order
         this.ringRadii.reverse();
+    }
+
+    B.onMouseOverSlice = function(area) {
+        area.attr({
+            fill: '#0000ff',
+            opacity: 0.1
+        });
+    }
+
+    B.onMouseOutSlice = function(area) {
+        area.attr({
+            fill: '#fff',
+            opacity: 0
+        });
     }
 
     B.drawRings = function(canvas) {
@@ -126,8 +141,17 @@ Raphael.fn.bullseye = function(opt) {
                 'font-size': '8pt'
             });
         }
-        
     }
+
+    B.drawSliceArea = function(canvas, cx, cy, r, startAngle, endAngle, params) {
+        var x1 = cx + r * Math.cos(-startAngle * RAD_CONST),
+            x2 = cx + r * Math.cos(-endAngle * RAD_CONST),
+            y1 = cy + r * Math.sin(-startAngle * RAD_CONST),
+            y2 = cy + r * Math.sin(-endAngle * RAD_CONST);
+
+        return canvas.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, + (endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
+    }
+
 
     B.drawRibbon = function(canvas, cx, cy, r, startAngle, endAngle, params) {
         var x1 = cx + r * Math.cos(-startAngle * RAD_CONST),
@@ -149,6 +173,7 @@ Raphael.fn.bullseye = function(opt) {
     
 
     B.drawSliceLabel = function(canvas, sliceIdx, labelDeg, line1, line2) {
+        var self = this;
         var sliceLabelRadius = this.sliceLabelRadius,
             centerX = this.centerX,
             centerY = this.centerY,
@@ -180,17 +205,20 @@ Raphael.fn.bullseye = function(opt) {
 				this.attr({
 					fill: '#437dd3'
 				});
+                self.onMouseOverSlice(self.sliceAreas[sliceIdx]);
 			}, 
 			function() {
 				this.attr({
 					fill: '#000000'						
 				});
+                self.onMouseOutSlice(self.sliceAreas[sliceIdx]);
 			});
 		})(sliceIdx);
 	}
     
     // draw slice separators and slice labels
     B.drawSlices = function(canvas) {
+        var self = this;
         var centerX = this.centerX,
             centerY = this.centerY,
             maxRadius = this.maxRadius,
@@ -199,24 +227,26 @@ Raphael.fn.bullseye = function(opt) {
             sliceAngle = 360 / numSlices,
             startDegree = this.startDegree != null ? this.startDegree : sliceAngle/2,
             line_deg, 
-            first_line, 
             line;
         
-        for (var i = 0, line_deg = startDegree; i < numSlices; i++, line_deg += sliceAngle) {
+        for (var i = -1, line_deg = startDegree; i < numSlices; i++, line_deg += sliceAngle) {
             var prev_line = line;
             
-            // draw shadow
+            // draw separator shadow
             this.drawLine(canvas, centerX, centerY, maxRadius, line_deg, {stroke: '#000000', 'stroke-width': 5, 'stroke-opacity': 0.15});
             // draw slice separator
             line = this.drawLine(canvas, centerX, centerY, maxRadius, line_deg, {stroke: '#ffffff', 'stroke-width': 4});
             
-            if (i == 0)
-                first_line = line;
-            
-            if (prev_line) 
+            if (prev_line) {  
+                // draw slice label between 2 line separators
                 this.drawSliceLabel(canvas, i, line_deg - sliceAngle / 2, prev_line, line);
+
+                // invisible slice highlight area
+                var area = this.drawSliceArea(canvas, centerX, centerY, maxRadius, line_deg - sliceAngle, line_deg, {'stroke-width': 0, 'fill': '#fff', 'opacity': 0});
+
+                this.sliceAreas.push(area);
+            }
         }
-        this.drawSliceLabel(canvas, 0, line_deg - sliceAngle / 2, line, first_line);
     }
 
 	B.removePoint = function(myPoint) {
