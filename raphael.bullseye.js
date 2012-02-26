@@ -410,12 +410,16 @@ Raphael.fn.bullseye = function(opts) {
                 return null;
             return self.getSlice(this.angle);
         }
+        
         point.getRing = function() {
             return self.getRing(this.radius);
         }
         
         point.setLabel = function(str) {
-            if (str !== undefined) {
+        	if (!this.label) {
+        		this.label = canvas.text(-9999, this.attrs.cy, str);
+        	}
+        	else if (str !== undefined) {
                 // update label text
                 this.label.attr({
                     text: str
@@ -437,26 +441,15 @@ Raphael.fn.bullseye = function(opts) {
             });
         }
         
-        
         point.angle = angle;
         point.radius = radius;
         point.distance = radius / maxRadius;
         point.ringDistance = distance;
         
-        var label = opts.label || 'Point ' + point.id;
-        
-        if (pointX > centerX)
-            point.label = canvas.text(-9999, pointY, label);
-        else
-            point.label = canvas.text(-9999, pointY, label);
-        
-        point.setLabel(label);
+        point.setLabel(opts.label || 'Point ' + point.id);
         
         return point;
-        
     }
-
-
 
 	B.getBounds = function(ring) {
         var ringRadii = this.ringRadii;
