@@ -1,4 +1,17 @@
-Raphael.fn.bullseye = function(opt) {
+/**
+ * Bullseye chart constructor
+ * @param {Object}   opts                 Chart options
+ * @param {Integer}  [opts.startDegree]   Optional. Defines where to start drawing the first slice
+ * @param {String[]} opts.sliceLabels     Array of slice labels. Defines how to carve up the chart.
+ * @param {String[]} opts.ringLabels      Array of ring labels. Defines the number of rings and their labels.
+ * @param {String[]} [opts.ringFills]     Optional. Array of hex colors to color the round rings. Indices match ringLabels'
+ * @param {String}   [opts.bullseyeFill]  Color of the bullseye in hex
+ * @param {Boolean}  [opts.allowDrag]     Defaults to false. True to allow dragging points.
+ * @param {Function} [opts.onPointClick]  Callback when point is clicked on. First param is the clicked point.
+ * @param {Function} [opts.onSliceClick]  Callback when the slice label is clicked on. First param is the opts.sliceLabels' index
+ * @param {Function} [opts.onMouseOver]   Callback when mouse is over a point. First param is the point itself.
+ */
+Raphael.fn.bullseye = function(opts) {
 	var RAD_CONST = Math.PI / 180;
 
     function Bullseye() {
@@ -7,25 +20,19 @@ Raphael.fn.bullseye = function(opt) {
 
     var B = Bullseye.prototype;
 
-    B.initialize = function(canvas, opt) {
+
+    B.initialize = function(canvas, opts) {
         this.width        = canvas.canvas.clientWidth  || canvas.width,
         this.height       = canvas.canvas.clientHeight || canvas.height;
-        this.startDegree  = opt.startDegree;
-        this.sliceLabels  = opt.sliceLabels  || [];
-        this.ringFills    = opt.ringFills    || [];
-        this.ringLabels   = opt.ringLabels   || [];
-        this.bullseyeFill = opt.bullseyeFill || '#c0c0c0';
-        this.allowDrag    = opt.allowDrag;
-        this.onPointClick = opt.onPointClick || function (){};
-        this.onSliceClick = opt.onSliceClick || function (){};
-        this.onMouseOver  = opt.onMouseOver  || function (){};
-
-        if (this.startDegree != null && this.startDegree > 0) {
-            this.startDegree = Math.abs(this.startDegree) % 360;
-            // make the start degree negative, preserves correct label rotation
-            // eg 330 -> -30
-            this.startDegree -= 360;
-        }
+        this.startDegree  = opts.startDegree;
+        this.sliceLabels  = opts.sliceLabels  || [];
+        this.ringFills    = opts.ringFills    || [];
+        this.ringLabels   = opts.ringLabels   || [];
+        this.bullseyeFill = opts.bullseyeFill || '#c0c0c0';
+        this.allowDrag    = opts.allowDrag;
+        this.onPointClick = opts.onPointClick || function (){};
+        this.onSliceClick = opts.onSliceClick || function (){};
+        this.onMouseOver  = opts.onMouseOver  || function (){};
 
         this.centerX 			= this.width / 2;
         this.centerY 			= this.height / 2;
@@ -40,9 +47,7 @@ Raphael.fn.bullseye = function(opt) {
         this.ringRadii = [];
         this.sliceAreas = [];
 
-        /**
-         * draw chart components in specific order
-         */
+        // draw chart components in specific order
         this.drawRings(canvas);
         this.drawSlices(canvas);
         this.drawRibbon(canvas, this.centerX, this.centerY, this.maxRadius + 5, 265, 275, {fill: '45-#808080-#000000', 'fill-opacity': 0.4, 'stroke-width': 2, stroke: '#ffffff'});
@@ -225,24 +230,30 @@ Raphael.fn.bullseye = function(opt) {
             sliceLabels = this.sliceLabels,
             numSlices  = sliceLabels.length,
             sliceAngle = 360 / numSlices,
-            startDegree = this.startDegree != null ? this.startDegree : sliceAngle/2,
+            startDegree = this.startDegree != null ? this.startDegree : -sliceAngle/2,
             line_deg, 
             line;
-        
+
+        if (this.startDegree > 0) {
+            // make the start degree negative, preserves correct label rotation
+            // eg 330 -> -30
+            this.startDegree = this.startDegree % 360 - 360;
+        }
+
         for (var i = -1, line_deg = startDegree; i < numSlices; i++, line_deg += sliceAngle) {
             var prev_line = line;
             
             // draw separator shadow
-            this.drawLine(canvas, centerX, centerY, maxRadius, line_deg, {stroke: '#000000', 'stroke-width': 5, 'stroke-opacity': 0.15});
+            this.drawLine(canvas, centerX, centerY, maxRadius + 2, line_deg, {stroke: '#000000', 'stroke-width': 5, 'stroke-opacity': 0.15});
             // draw slice separator
-            line = this.drawLine(canvas, centerX, centerY, maxRadius, line_deg, {stroke: '#ffffff', 'stroke-width': 4});
+            line = this.drawLine(canvas, centerX, centerY, maxRadius + 2, line_deg, {stroke: '#ffffff', 'stroke-width': 4});
             
             if (prev_line) {  
                 // draw slice label between 2 line separators
                 this.drawSliceLabel(canvas, i, line_deg - sliceAngle / 2, prev_line, line);
 
-                // invisible slice highlight area
-                var area = this.drawSliceArea(canvas, centerX, centerY, maxRadius, line_deg - sliceAngle, line_deg, {'stroke-width': 0, 'fill': '#fff', 'opacity': 0});
+                // slice highlight area
+                var area = this.drawSliceArea(canvas, centerX, centerY, maxRadius + 2, line_deg - sliceAngle + 1, line_deg - 1, {'fill': '#fff', 'opacity': 0});
 
                 this.sliceAreas.push(area);
             }
@@ -272,15 +283,14 @@ Raphael.fn.bullseye = function(opt) {
     }
 
     /**
-     * opts {object} 	Contains the following keys:
-     * 		- angle			Positive angle of the point from the origin (in radians)
-     * 		- distance		Distance of the point from the origin. 
-     * 						If the ring param is provided, then this becomes distance from the lower ring boundary.
-     * 						This param a percentage, either of maxRadius or of the ring size if the ring param is provided.
-     * 		- ring			Ring index (-1 for origin)
-     * 		- pointFill		hex color value
-     * 		- pointSize		size in pixels
-     * 		- label			text label
+     * Adds new point to the chart
+     * @param {Object}  opts             Options for the new point
+     * @param {Decimal} opts.angle       Positive angle of the point from the origin (in radians)          
+     * @param {Integer} [opts.ring]      The ring index (-1 for origin, 0 for first ring)
+     * @param {Decimal} opts.distance    If ring is provided, % distance from start of ring boundary to the end else % distance from origin to the last ring  
+     * @param {String}  [opts.pointFill] Hex color of point
+     * @param {Integer} [opts.pointSize] Radius in pixels
+     * @param {String}  [opts.label]     Optional label
      */
     B.addPoint = function(opts) {
         var self = this;
@@ -298,7 +308,7 @@ Raphael.fn.bullseye = function(opt) {
             ring     = opts.ring;
 
         var radius;
-        if (ring == null || distance >= 1) {
+        if (ring == null) {
             radius = distance * maxRadius
         } else {
             var bounds = this.getBounds(ring);
@@ -310,8 +320,8 @@ Raphael.fn.bullseye = function(opt) {
         var pointX = centerX + radius * Math.cos(angle),
             pointY = centerY - radius * Math.sin(angle);	
         
-        var pointFill = opts.pointFill,
-            pointSize = opts.pointSize;
+        var pointFill = opts.pointFill || '#00ff00',
+            pointSize = opts.pointSize || 5;
         
         var point = canvas.circle(pointX, pointY, pointSize)
         .attr({
@@ -495,7 +505,7 @@ Raphael.fn.bullseye = function(opt) {
 			return -1;
 	}
 	
-    var b = new Bullseye(this, opt);
+    var b = new Bullseye(this, opts);
 
     return b;
 
