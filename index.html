@@ -39,9 +39,10 @@
     <li>easily serializable with polar coordinates</li>
     <li>mouse interaction and callbacks: <code>onMouseOver</code>, <code>onPointClick</code>, <code>onSliceClick</code></li>
     <li>add / remove / drag points at runtime</li>
-    <li>works in Chrome, FF, and IE*</li>
+    <li>works in Chrome, FF, and IE</li>
+	<li>zooming on points</li>
     </ul>
-    * works in IE9, briefly tested with IE7 and 8 
+
     <h2>Example</h2>
     <div id="chart-container">
       <div id="canvas"></div>
@@ -55,8 +56,8 @@
     <h2>Usage</h2>
     <pre>
     Raphael('canvas', 640, 600).bullseye({
-        'sliceLabels': ['Pacific', 'Atlantic', 'Mediterranean'],
-        'ringLabels': [1940, 1941, 1942, 1943, 1944, 1945]
+        'slices': ['Pacific', 'Atlantic', 'Mediterranean'],
+        'rings' : [1940, 1941, 1942, 1943, 1944, 1945]
     });</pre>
         
     <p>Check out the project page <a href="http://github.com/dimarr/raphael.bullseye.js">dimarr/raphael.bullseye.js</a> for more complete documentation.</p>

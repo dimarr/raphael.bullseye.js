@@ -7,14 +7,13 @@
 window.onload = function() {
     var RAD = Math.PI / 180;
     var bullseye = Raphael('canvas', 450, 450).bullseye({
-        'sliceLabels' : ['Apple', 'Banana', 'Orange'],
-        'ringLabels'  : [1, 2, 3, 4],
-        'startDegree' : -30
+        'slices' : ['Apple', 'Banana', 'Orange', 'Lemon', 'Pineapple', 'Cherry'],
+        'rings'  : [1, 2, 3, 4]
     });
 
     bullseye.addPoint({
         'label'    : 'Point 1',
-        'angle'    : 45 * RAD,
+        'angle'    : 60 * RAD,
         'distance' : 0.25,   // 25% of the radius
         'pointFill': '#00ff00',
         'pointSize': 5

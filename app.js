@@ -35,8 +35,8 @@ window.onload = function() {
         m: 'Mediterranean'
     };
     var bullseye = Raphael('canvas', 640, 600).bullseye({
-        'sliceLabels': slices,
-        'ringLabels': [1940, 1941, 1942, 1943, 1944, 1945],
+        'slices': slices,
+        'rings' : [1940, 1941, 1942, 1943, 1944, 1945],
         'startDegree': -30,
         'allowDrag': true,
         'onMouseOver': showData,
