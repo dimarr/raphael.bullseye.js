@@ -69,15 +69,15 @@ window.onload = function() {
     var upper_bound, lower_bound;
     for (var i = 0; i < data.length; i++) {
         switch(data[i][0]) {
-            case 'a':
+            case 'p':
                 lower_bound = -25;
                 upper_bound = 85;
                 break;
-            case 'm':
+            case 'a':
                 lower_bound = 95;
                 upper_bound = 205;
                 break;
-            case 'p':
+            case 'm':
                 lower_bound = 215;
                 upper_bound = 325;
                 break;
