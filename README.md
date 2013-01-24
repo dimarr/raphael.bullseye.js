@@ -9,8 +9,7 @@ Bullseye chart made with Javascript and the [Raphael](http://raphaeljs.org) grap
 - mouse interaction and callbacks: `onMouseOver`, `onPointClick`, `onSliceClick`
 - supports adding, removing, and dragging points
 - works in Chrome, FF, and IE*
-
-\* works in IE9, briefly tested with IE7 and 8 
+- zooming on points
 
 
 ## Demo
