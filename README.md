@@ -26,8 +26,8 @@ Bullseye chart made with Javascript and the [Raphael](http://raphaeljs.org) grap
 
     var RAD = Math.PI / 180;
     var bullseye = Raphael('canvas', 450, 450).bullseye({
-        'sliceLabels' : ['Apple', 'Banana', 'Orange', 'Kiwi'],
-        'ringLabels'  : [1, 2, 3, 4]
+        'slices' : ['Apple', 'Banana', 'Orange', 'Kiwi'],
+        'rings'  : [1, 2, 3, 4]
     });
 
     bullseye.addPoint({
