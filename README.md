@@ -25,25 +25,21 @@ Bullseye chart made with Javascript and the [Raphael](http://raphaeljs.org) grap
 
     var RAD = Math.PI / 180;
     var bullseye = Raphael('canvas', 450, 450).bullseye({
-        'slices' : ['Apple', 'Banana', 'Orange', 'Kiwi'],
+        'slices' : ['Apple', 'Banana', 'Orange', 'Lemon', 'Pineapple', 'Cherry'],
         'rings'  : [1, 2, 3, 4]
     });
 
     bullseye.addPoint({
-        'label'    : 'Point 0',
-        'angle'    : 300 * RAD,
-        'distance' : 1      // 100% of the radius, on the outer boundary
-    });
-
-    bullseye.addPoint({
         'label'    : 'Point 1',
-        'angle'    : 65 * RAD,
-        'distance' : 0.25   // 25% of the radius
+        'angle'    : 60 * RAD,
+        'distance' : 0.25,   // 25% of the radius
+        'pointFill': '#00ff00',
+        'pointSize': 5
     });
 
     bullseye.addPoint({
         'label'    : 'Point 2',
-        'angle'    : 65 * RAD,
+        'angle'    : 45 * RAD,
         'distance' : 1.25,   // 125% of the radius
         'pointFill': '#0000ff',
         'pointSize': 10
@@ -54,7 +50,8 @@ Bullseye chart made with Javascript and the [Raphael](http://raphaeljs.org) grap
         'angle'    : 180 * RAD,
         'ring'     : 2,     // place point in ring 3
         'distance' : .25,   // 25% of the the specified ring
-        'pointFill': '#ff0000'
+        'pointFill': '#ff0000',
+        'pointSize': 5
     });
 
 ## License
