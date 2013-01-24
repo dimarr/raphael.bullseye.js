@@ -8,7 +8,7 @@ Bullseye chart made with Javascript and the [Raphael](http://raphaeljs.org) grap
 - easily serializable polar coordinates
 - mouse interaction and callbacks: `onMouseOver`, `onPointClick`, `onSliceClick`
 - supports adding, removing, and dragging points
-- works in Chrome, FF, and IE*
+- works in Chrome, FF, and IE
 - zooming on points
 
 
